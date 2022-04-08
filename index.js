@@ -1,20 +1,23 @@
+const DELIMITER = 'd';
+const NEGATIVE_SIGN = '-';
+
 function Add(numbers) {
-  const parsedNumbers = numbers.toString().replace(/[^\d-]/g, 'd'); // d is our delimiter
+  const parsedNumbers = numbers.toString().replace(/[^\d-]/g, DELIMITER); // d is our delimiter
   let sum = 0;
   let negativeNumbers = [];
   let nextNegativeNumber = false;
   let subStr = '';
   for (const char of parsedNumbers) {
     if (isNaN(char)) {
-      if (char == '-') {
+      if (char == NEGATIVE_SIGN) {
         nextNegativeNumber = true;
-      } else if (char == 'd' && subStr.length) {
+      } else if (char == DELIMITER && subStr.length) {
         if (!nextNegativeNumber) {
           if (Number(subStr) <= 1000) { // if the the number is bigger than 1000 then we have to ignore it
             sum += Number(subStr);
           }
         } else {
-          negativeNumbers.push(Number(`-${Number(subStr)}`));
+          negativeNumbers.push(Number(`${NEGATIVE_SIGN}${Number(subStr)}`));
           nextNegativeNumber = false;
         }
         subStr = '';
@@ -28,7 +31,7 @@ function Add(numbers) {
     if (!nextNegativeNumber && Number(subStr) <= 1000) {
       sum += Number(subStr);
     } else if (nextNegativeNumber) {
-      negativeNumbers.push(Number(`-${Number(subStr)}`));
+      negativeNumbers.push(Number(`${NEGATIVE_SIGN}${Number(subStr)}`));
     }
   }
 
