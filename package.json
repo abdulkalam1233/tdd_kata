@@ -4,8 +4,8 @@
   "description": "TDD Kata is a assessment for the incubyte Oraganization.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm start"
+    "test": "node test.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
