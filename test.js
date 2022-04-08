@@ -42,23 +42,23 @@ const testCases = [
 
 console.log('***************Testing Started*******************')
 let totalPass = 0;
-for(const testCase of testCases) {
+testCases.map((testCase, index) => {
   try {
     const result = Add(testCase.case);
     if (result == testCase.result) {
       totalPass += 1;
-      console.log('PASSED')
+      console.log(`CASE: ${index + 1} Passed`)
     } else {
-      console.error(`FAILED Expected: ${testCase.result} Actual: ${result}`)
+      console.error(`CASE: ${index + 1} Failed Expected: ${testCase.result} Actual: ${result}`)
     }
   } catch (e) {
     if (e.message && testCase.is_negative &&  e.message.startsWith('negatives not allowed')) {
       totalPass += 1;
-      console.log('PASSED', e.message)
+      console.log(`CASE: ${index + 1} Passed `, e.message)
     } else {
-      console.error('ERROR', testCase.case, e)
+      console.error(`CASE: ${index + 1} Error`, testCase.case, e)
     }
   }
-}
+});
 console.log('***************Testing COMPLETED*******************')
 console.log(`Passed: ${totalPass} \nFailed: ${testCases.length - totalPass}`);
