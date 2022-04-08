@@ -5,9 +5,12 @@ TDD Kata is a assessment for the incubyte Oraganization.
 npm test
 
 # Docker
-docker build . -t tdd-kata // for building docker image
+// Build docker image
+docker build . -t tdd-kata
 
-docker images  // List of images you must see tdd-kata repository name like below
+// List of images you must see tdd-kata repository name like below
+docker images
+
 REPOSITORY   TAG         IMAGE ID       CREATED         SIZE
 tdd-kata     latest      caa7c9b5408a   5 minutes ago   111MB
 
