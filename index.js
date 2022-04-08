@@ -12,12 +12,12 @@ function Add(numbers) {
       if (char == NEGATIVE_SIGN) {
         nextNegativeNumber = true;
       } else if (char == DELIMITER && subStr.length) {
+        const numberVal = Number(subStr);
         if (!nextNegativeNumber) {
-          if (Number(subStr) <= 1000) { // if the the number is bigger than 1000 then we have to ignore it
-            sum += Number(subStr);
-          }
+          // if the the number is bigger than 1000 then we have to ignore it
+          sum += numberVal <= 1000 ? numberVal : 0;
         } else {
-          negativeNumbers.push(Number(`${NEGATIVE_SIGN}${Number(subStr)}`));
+          negativeNumbers.push(Number(`${NEGATIVE_SIGN}${numberVal}`));
           nextNegativeNumber = false;
         }
         subStr = '';
@@ -28,10 +28,11 @@ function Add(numbers) {
   }
   // if there is still numbers added to substr but not added to sum or negative numbers
   if (subStr) {
-    if (!nextNegativeNumber && Number(subStr) <= 1000) {
-      sum += Number(subStr);
-    } else if (nextNegativeNumber) {
-      negativeNumbers.push(Number(`${NEGATIVE_SIGN}${Number(subStr)}`));
+    const numberVal = Number(subStr);
+    if (!nextNegativeNumber) {
+      sum += numberVal <= 1000 ? numberVal : 0;
+    } else {
+      negativeNumbers.push(Number(`${NEGATIVE_SIGN}${numberVal}`));
     }
   }
 

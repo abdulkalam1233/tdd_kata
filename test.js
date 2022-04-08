@@ -38,6 +38,10 @@ const testCases = [
     case: '-;1001\n2',
     is_negative: true
   },
+  {
+    case: `[%%]1[\n]24`,
+    result: 25
+  },
 ];
 
 console.log('***************Testing Started*******************')
