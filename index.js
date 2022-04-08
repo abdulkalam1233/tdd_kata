@@ -1,12 +1,12 @@
 function Add(numbers) {
-  const parsedNumbers = numbers.replace(/[^\d-]/g, '')
-  if (numbers === '') {
+  const parsedNumbers = numbers.toString().replace(/[^\d-]/g, '');
+  if (parsedNumbers === '') {
     return 0;
   }
   let sum = 0;
   let negativeNumbers = [];
   let nextNegativeNumber = false;
-  for (const char in parsedNumbers) {
+  for (const char of parsedNumbers) {
     if (isNaN(char)) {
       nextNegativeNumber = true;
       continue;

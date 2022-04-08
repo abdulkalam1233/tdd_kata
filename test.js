@@ -1,4 +1,3 @@
-const assert = require('assert')
 const {Add} = require('./index');
 
 const testCases = [
@@ -43,10 +42,31 @@ const testCases = [
     4`,
     result: 7
   },
+  {
+    case: '-1,\n-2,3,-5',
+    is_negative: true
+  },
 ];
 
+console.log('***************Testing Started*******************')
+let totalPass = 0;
 for(const testCase of testCases) {
-  console.log(testCase.case, (Add(testCase.case)))
-  // const result = assert(Add(testCase.case) == testCase.result)
-  // console.log(result);
+  try {
+    const result = Add(testCase.case);
+    if (result == testCase.result) {
+      totalPass += 1;
+      console.log('PASSED')
+    } else {
+      console.error('FAILED', testCase.case)
+    }
+  } catch (e) {
+    if (e.message && testCase.is_negative &&  e.message.startsWith('negatives not allowed')) {
+      totalPass += 1;
+      console.log('PASSED', e.message)
+    } else {
+      console.error('FAILED', testCase.case, e)
+    }
+  }
 }
+console.log('***************Testing COMPLETED*******************')
+console.log(`Passed: ${totalPass} \nFailed: ${testCases.length - totalPass}`);
