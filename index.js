@@ -13,7 +13,7 @@ function Add(numbers) {
           if (Number(subStr) <= 1000) { // if the the number is bigger than 1000 then we have to ignore it
             sum += Number(subStr);
           }
-        } else if (subStr) {
+        } else {
           negativeNumbers.push(Number(`-${Number(subStr)}`));
           nextNegativeNumber = false;
         }
@@ -23,11 +23,13 @@ function Add(numbers) {
     }
     subStr += char;
   }
-  // Handling the negative and non negative condition and big number condition
-  if (!nextNegativeNumber && Number(subStr) <= 1000) {
-    sum += Number(subStr);
-  } else if (nextNegativeNumber) {
-    negativeNumbers.push(Number(`-${Number(subStr)}`));
+  // if there is still numbers added to substr but not added to sum or negative numbers
+  if (subStr) {
+    if (!nextNegativeNumber && Number(subStr) <= 1000) {
+      sum += Number(subStr);
+    } else if (nextNegativeNumber) {
+      negativeNumbers.push(Number(`-${Number(subStr)}`));
+    }
   }
 
   // if there are any negative numbers then throwing error
