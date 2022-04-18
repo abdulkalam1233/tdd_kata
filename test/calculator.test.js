@@ -23,5 +23,9 @@ describe('TDD testing', function() {
     it(`Take up to two numbers, separated by commas, and will return their sum.`, function() {
       expect(calculator.calculate('1,2')).equal(3)
     });
+
+    it(`Take up to two numbers, separated by new line, and will return their sum.`, function() {
+      expect(calculator.calculate('1,3')).equal(4)
+    });
   });
 });

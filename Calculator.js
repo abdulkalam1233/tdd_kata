@@ -9,7 +9,7 @@
 class Calculator {
 
   constructor() {
-    this.delimiter = new RegExp(',')
+    this.delimiter = new RegExp(',|\n')
   }
   
   calculate(input) {
