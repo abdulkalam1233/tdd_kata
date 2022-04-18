@@ -9,9 +9,10 @@
 class Calculator {
 
   constructor() {
-    this.delimiter = new RegExp(',|\n');
-    this.OUR_DELIMITER = 'd';
-    this.REPLACE_REGEX = /[^\d]/g;
+    // this.delimiter = new RegExp(',|\n');
+    this.custom_delimiter = 'd';
+    this.replace_delimiter_regex = /[^\d]/g;
+    this.repeat_delimiter_regex = new RegExp(`${this.custom_delimiter}+`)
   }
   
   calculate(input) {
@@ -25,17 +26,23 @@ class Calculator {
   getSum(numbers) {
     let sum = 0;
     for(const num of numbers) {
-      sum += parseInt(num);
+      sum += parseInt(num || 0);
     }
     return sum;
   }
 
   splitStringByDelimiter(input){
-    return this.replaceTheSpecialCharactersWithTheCustomisedDelimeter(input).split(this.OUR_DELIMITER)
+    const inputWithCustomDelimiter = this.replaceTheSpecialCharactersWithTheCustomisedDelimeter(input);
+    return inputWithCustomDelimiter.split(this.custom_delimiter);
   }
 
   replaceTheSpecialCharactersWithTheCustomisedDelimeter(input){
-    return input.replace(this.REPLACE_REGEX, this.OUR_DELIMITER);
+    const inputWithCustomDelimiter = input.replace(this.replace_delimiter_regex, this.custom_delimiter);
+    return this.replaceRepeatingDelimiterWithSingleDelimiter(inputWithCustomDelimiter);
+  }
+
+  replaceRepeatingDelimiterWithSingleDelimiter(input) {
+    return input.replace(this.repeat_delimiter_regex, this.custom_delimiter);
   }
 
   isEmpty(input) {
