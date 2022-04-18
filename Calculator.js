@@ -4,6 +4,7 @@ class Calculator {
     if (this.isEmpty(input)) {
       return 0;
     }
+    return parseInt(input)
   }
 
   isEmpty(input) {
