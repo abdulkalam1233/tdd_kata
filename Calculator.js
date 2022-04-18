@@ -5,6 +5,7 @@
  * 4. Take up to two numbers, separated by new line, and will return their sum.
  * 5. Support different delimiters //;\n1;2 should return sum 3
  * 6. Calling Add with a negative number will throw an exception "negatives not allowed" - and the negative that was passed.
+ * 7. Ignore the number greater than the 1000
  */
 class Calculator {
 
@@ -29,7 +30,7 @@ class Calculator {
   calculateSum(numbers) {
     let sum = 0;
     for(const num of numbers) {
-      sum += parseInt(num);
+      sum += this.checkGreaterThanThousand(num);
     }
     return sum;
   }
@@ -51,9 +52,13 @@ class Calculator {
     return input.replace(this.replace_delimiter_regex, this.custom_delimiter);
   }
 
-
   isEmpty(input) {
     return input == '';
+  }
+
+  checkGreaterThanThousand(num) {
+    const intVal = parseInt(num);
+    return intVal > 1000 ? 0 : intVal;
   }
 }
 

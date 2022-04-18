@@ -35,5 +35,21 @@ describe('TDD testing', function() {
     it(`Calling Add with a negative number will throw an exception "negatives not allowed" - and the negative that was passed.`, function() {
       expect(function(){calculator.calculate('-1,-5')}).to.throw('negatives not allowed -1,-5')
     });
+
+    it(`Ignore the number greater than the 1000.`, function() {
+      expect(calculator.calculate('1001')).equal(0)
+    });
+
+    it(`Ignore the number greater than the 1000.`, function() {
+      expect(calculator.calculate('1001,2')).equal(2)
+    });
+
+    it(`Ignore the number greater than the 1000.`, function() {
+      expect(calculator.calculate('1001\n2')).equal(2)
+    });
+
+    it(`string with 1000 and other number.`, function() {
+      expect(calculator.calculate('1000\n1')).equal(1001)
+    });
   });
 });
