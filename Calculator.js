@@ -7,19 +7,29 @@
  * 6. Calling Add with a negative number will throw an exception "negatives not allowed" - and the negative that was passed.
  */
 class Calculator {
+
+  constructor() {
+    this.delimiter = new RegExp(',')
+  }
   
   calculate(input) {
     if (this.isEmpty(input)) {
       return 0;
-    } else if (input.length == 1) {
-      return parseInt(input);
     }
     const splittedInput = this.splitStringByDelimiter(input)
-    return parseInt(splittedInput[0]) + parseInt(splittedInput[1])
+    return this.getSum(splittedInput)
+  }
+
+  getSum(numbers) {
+    let sum = 0;
+    for(const num of numbers) {
+      sum += parseInt(num);
+    }
+    return sum;
   }
 
   splitStringByDelimiter(input){
-    return input.split(',')
+    return input.split(this.delimiter)
   }
 
   isEmpty(input) {
