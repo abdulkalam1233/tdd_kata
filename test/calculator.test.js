@@ -28,8 +28,12 @@ describe('TDD testing', function() {
       expect(calculator.calculate('1,3')).equal(4)
     });
 
-    it(`Support different delimiters //;\n1;2 should return sum 3.`, function() {
-      expect(calculator.calculate('//;\n1;2')).equal(3)
+    it(`Calling Add with a negative number will throw an exception "negatives not allowed" - and the negative that was passed.`, function() {
+      expect(function(){calculator.calculate('-1')}).to.throw('negatives not allowed -1')
+    });
+
+    it(`Calling Add with a negative number will throw an exception "negatives not allowed" - and the negative that was passed.`, function() {
+      expect(function(){calculator.calculate('-1,-5')}).to.throw('negatives not allowed -1,-5')
     });
   });
 });

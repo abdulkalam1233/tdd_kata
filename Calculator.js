@@ -11,7 +11,7 @@ class Calculator {
   constructor() {
     // this.delimiter = new RegExp(',|\n');
     this.custom_delimiter = 'd';
-    this.replace_delimiter_regex = /[^\d]/g;
+    this.replace_delimiter_regex = /[^\d-]/g;
     this.repeat_delimiter_regex = new RegExp(`${this.custom_delimiter}+`)
   }
   
@@ -24,11 +24,20 @@ class Calculator {
   }
 
   getSum(numbers) {
+    this.checkNegativeNumbers(numbers);
     let sum = 0;
     for(const num of numbers) {
       sum += parseInt(num || 0);
     }
     return sum;
+  }
+
+  checkNegativeNumbers(numbers) {
+    const negativeNumbers = numbers.filter((num) => parseInt(num) < 0);
+    if (negativeNumbers.length) {
+      throw new Error(`negatives not allowed ${negativeNumbers.toString()}`)
+    }
+    return;
   }
 
   splitStringByDelimiter(input){
