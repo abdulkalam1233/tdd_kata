@@ -14,15 +14,16 @@ class Calculator {
     this.replace_delimiter_regex = /[^\d-]+/g;
   }
   
-  calculate(input) {
+  calculate(input, operator) {
+    this.validateOperator(operator);
     if (this.isEmpty(input)) {
       return 0;
     }
     const splittedInput = this.splitStringByDelimiter(input)
-    return this.getSum(splittedInput)
+    return this.getResult(splittedInput, operator)
   }
 
-  getSum(numbers) {
+  getResult(numbers, operation) {
     this.checkNegativeNumbers(numbers);
     return this.calculateSum(numbers);
   }
@@ -59,6 +60,15 @@ class Calculator {
   checkGreaterThanThousand(num) {
     const intVal = parseInt(num);
     return intVal > 1000 ? 0 : intVal;
+  }
+
+  validateOperator(operator) {
+    if (!operator) {
+      throw new Error('Operator is required');
+    }
+    if (!['+', '*'].includes(operator)) {
+      throw new Error('invalid operator');
+    }
   }
 }
 
