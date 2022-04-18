@@ -23,15 +23,30 @@ class Calculator {
     return this.getResult(splittedInput, operator)
   }
 
-  getResult(numbers, operation) {
+  getResult(numbers, operator) {
     this.checkNegativeNumbers(numbers);
-    return this.calculateSum(numbers);
+    switch(operator) {
+      case '+': {
+        return this.calculateSum(numbers);
+      }
+      case '*': {
+        return this.calculateProduction(numbers);
+      }
+    }
   }
   
   calculateSum(numbers) {
     let sum = 0;
     for(const num of numbers) {
       sum += this.checkGreaterThanThousand(num);
+    }
+    return sum;
+  }
+
+  calculateProduction(numbers) {
+    let sum = 1;
+    for(const num of numbers) {
+      sum *= this.checkGreaterThanThousand(num);
     }
     return sum;
   }

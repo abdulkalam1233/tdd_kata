@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const {Calculator} = require('../Calculator');
 
 describe('TDD testing', function() {
-  describe('#Add', function() {
+  describe('#Sum', function() {
     let calculator;
     const operator = '+';
     beforeEach(() => {
