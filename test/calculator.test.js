@@ -15,5 +15,9 @@ describe('TDD testing', function() {
     it(`It Should return single value for single number string`, function() {
       expect(calculator.calculate('1')).equal(1)
     });
+
+    it(`It Should return single value for big number string`, function() {
+      expect(calculator.calculate('100')).equal(100)
+    });
   });
 });
