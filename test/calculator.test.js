@@ -19,5 +19,9 @@ describe('TDD testing', function() {
     it(`It Should return single value for big number string`, function() {
       expect(calculator.calculate('100')).equal(100)
     });
+
+    it(`Take up to two numbers, separated by commas, and will return their sum.`, function() {
+      expect(calculator.calculate('1,2')).equal(3)
+    });
   });
 });

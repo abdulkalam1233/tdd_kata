@@ -11,8 +11,15 @@ class Calculator {
   calculate(input) {
     if (this.isEmpty(input)) {
       return 0;
+    } else if (input.length == 1) {
+      return parseInt(input);
     }
-    return parseInt(input)
+    const splittedInput = this.splitStringByDelimiter(input)
+    return parseInt(splittedInput[0]) + parseInt(splittedInput[1])
+  }
+
+  splitStringByDelimiter(input){
+    return input.split(',')
   }
 
   isEmpty(input) {
