@@ -3,13 +3,15 @@
  * 2. Allow the Add method to handle an unknown amount of numbers
  * 3. Take up to two numbers, separated by commas, and will return their sum.
  * 4. Take up to two numbers, separated by new line, and will return their sum.
- * 5. Support different delimiters //;\n1;2
+ * 5. Support different delimiters //;\n1;2 should return sum 3
  * 6. Calling Add with a negative number will throw an exception "negatives not allowed" - and the negative that was passed.
  */
 class Calculator {
 
   constructor() {
-    this.delimiter = new RegExp(',|\n')
+    this.delimiter = new RegExp(',|\n');
+    this.OUR_DELIMITER = 'd';
+    this.REPLACE_REGEX = /[^\d]/g;
   }
   
   calculate(input) {
@@ -29,7 +31,11 @@ class Calculator {
   }
 
   splitStringByDelimiter(input){
-    return input.split(this.delimiter)
+    return this.replaceTheSpecialCharactersWithTheCustomisedDelimeter(input).split(this.OUR_DELIMITER)
+  }
+
+  replaceTheSpecialCharactersWithTheCustomisedDelimeter(input){
+    return input.replace(this.REPLACE_REGEX, this.OUR_DELIMITER);
   }
 
   isEmpty(input) {
