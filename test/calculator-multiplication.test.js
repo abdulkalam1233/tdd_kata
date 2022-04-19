@@ -56,5 +56,9 @@ describe('TDD testing', function() {
     it(`string with 1000 and other number.`, function() {
       expect(calculator.calculate('1000\n1', operator)).equal(1000)
     });
+
+    it(` Support different delimiters //;\n1;2 should return sum 3`, function() {
+      expect(calculator.calculate('//;\n1;2', operator)).equal(2)
+    });
   });
 });
