@@ -60,5 +60,9 @@ describe('TDD testing', function() {
     it(` Support different delimiters //;\n1;2 should return sum 3`, function() {
       expect(calculator.calculate('//;\n1;2', operator)).equal(3)
     });
+
+    it(`Numbers with underscore`, function() {
+      expect(calculator.calculate('1_00', operator)).equal(100)
+    });
   });
 });

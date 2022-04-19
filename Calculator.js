@@ -6,11 +6,13 @@
  * 5. Support different delimiters //;\n1;2 should return sum 3
  * 6. Calling Add with a negative number will throw an exception "negatives not allowed" - and the negative that was passed.
  * 7. Ignore the number greater than the 1000
+ * 8. Numbers with underscore example: '1_00'
  */
 class Calculator {
 
   constructor() {
     this.custom_delimiter = '\n';
+    this.replace_underscore = '_';
     this.replace_delimiter_regex = /[^\d-]+/g;
   }
   
@@ -65,7 +67,12 @@ class Calculator {
   }
 
   replaceTheSpecialCharactersWithTheCustomisedDelimeter(input){
-    return input.replace(this.replace_delimiter_regex, this.custom_delimiter);
+    const inputWithNoUnderScores = this.replaceTheUnderScoreWithTheEmptyString(input)
+    return inputWithNoUnderScores.replace(this.replace_delimiter_regex, this.custom_delimiter);
+  }
+
+  replaceTheUnderScoreWithTheEmptyString(input) {
+    return input.replace(this.replace_underscore, '');
   }
 
   isEmpty(input) {
