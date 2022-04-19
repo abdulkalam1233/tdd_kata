@@ -10,7 +10,7 @@
 class Calculator {
 
   constructor() {
-    this.custom_delimiter = 'd';
+    this.custom_delimiter = '\n';
     this.replace_delimiter_regex = /[^\d-]+/g;
   }
   
@@ -61,7 +61,7 @@ class Calculator {
 
   splitStringByDelimiter(input){
     const inputWithCustomDelimiter = this.replaceTheSpecialCharactersWithTheCustomisedDelimeter(input);
-    return inputWithCustomDelimiter.split(this.custom_delimiter);
+    return inputWithCustomDelimiter.trim().split(this.custom_delimiter);
   }
 
   replaceTheSpecialCharactersWithTheCustomisedDelimeter(input){
