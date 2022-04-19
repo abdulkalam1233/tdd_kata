@@ -1,5 +1,5 @@
 # tdd_kata
-TDD Kata is a assessment for the incubyte Oraganization.
+TDD Kata is a assessment for the incubyte Organization.
 
 # for testing run below command
 npm test
