@@ -7,6 +7,7 @@
  * 6. Calling Add with a negative number will throw an exception "negatives not allowed" - and the negative that was passed.
  * 7. Ignore the number greater than the 1000
  * 8. Numbers with underscore example: '1_00'
+ * 9. Throw illegal character exception for null or undefined or startsWith the any char other than number and / input passed
  */
 class Calculator {
 
@@ -14,10 +15,12 @@ class Calculator {
     this.custom_delimiter = '\n';
     this.replace_underscore = '_';
     this.replace_delimiter_regex = /[^\d-]+/g;
+    this.input_validation_regex = /^([0-9]|\/)/
   }
   
   calculate(input, operator) {
     this.validateOperator(operator);
+    this.validateInputString(input);
     if (this.isEmpty(input)) {
       return 0;
     }
@@ -90,6 +93,17 @@ class Calculator {
     }
     if (!['+', '*'].includes(operator)) {
       throw new Error('invalid operator');
+    }
+  }
+
+  validateInputString(input) {
+    if (input == undefined || input == null) {
+      throw new Error('illegal character exception');
+    }
+    if (input.length) {
+      if (input.match(/([0-9]|\/)/).index !== 0) {
+        throw new Error('illegal character exception');
+      }
     }
   }
 }

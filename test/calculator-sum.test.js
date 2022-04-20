@@ -34,11 +34,11 @@ describe('TDD testing', function() {
     });
 
     it(`Calling Add with a negative number will throw an exception "negatives not allowed" - and the negative that was passed.`, function() {
-      expect(function(){calculator.calculate('-1', operator)}).to.throw('negatives not allowed -1')
+      expect(function(){calculator.calculate('-1', operator)}).to.throw('illegal character exception')
     });
 
     it(`Calling Add with a negative number will throw an exception "negatives not allowed" - and the negative that was passed.`, function() {
-      expect(function(){calculator.calculate('-1,-5', operator)}).to.throw('negatives not allowed -1,-5')
+      expect(function(){calculator.calculate('//;1;-5', operator)}).to.throw('negatives not allowed -5')
     });
 
     it(`Ignore the number greater than the 1000.`, function() {
@@ -64,5 +64,17 @@ describe('TDD testing', function() {
     it(`Numbers with underscore`, function() {
       expect(calculator.calculate('1_00', operator)).equal(100)
     });
+
+    it("Throw illegal exception for null or undefined input passed or the input starts with any character other than number or /", function() {
+      expect(function(){calculator.calculate(undefined, operator)}).to.throw('illegal character exception')
+    })
+
+    it("Throw illegal exception for null or undefined input passed or the input starts with any character other than number or /", function() {
+      expect(function(){calculator.calculate(null, operator)}).to.throw('illegal character exception')
+    }) 
+
+    it("Throw illegal exception for null or undefined input passed or the input starts with any character other than number or /", function() {
+      expect(function(){calculator.calculate('a123', operator)}).to.throw('illegal character exception')
+    }) 
   });
 });
